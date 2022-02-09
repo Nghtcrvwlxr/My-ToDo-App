@@ -1,10 +1,20 @@
 import React, {FC} from "react";
 import styled from "styled-components";
+import {useTypedDispatch} from "../../store/utils";
+import {deleteItem} from "../../store/slices/todo-list-slice";
 
-export const TodoListItem: FC = () => {
+type TodoListItemProps = {
+    id: number
+    label: string
+};
+
+export const TodoListItem: FC<TodoListItemProps> = (props) => {
+
+    const dispatch = useTypedDispatch();
+
     return (
         <>
-            <span>Item</span>
+            <span>{props.label}</span>
             <div>
                 <Button className="btn deep-purple lighten-1">
                     <i className="material-icons">priority_high</i>
@@ -12,7 +22,9 @@ export const TodoListItem: FC = () => {
                 <Button className="btn green">
                     <i className="material-icons">check</i>
                 </Button>
-                <Button className="btn red darken-1">
+                <Button
+                    className="btn red darken-1"
+                    onClick={() => dispatch(deleteItem(props.id))}>
                     <i className="material-icons">clear</i>
                 </Button>
             </div>
