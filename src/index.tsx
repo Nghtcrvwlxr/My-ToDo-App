@@ -7,6 +7,8 @@ import {store} from "./store/store";
 
 import {App} from './components/app/app';
 
+import './index.css';
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

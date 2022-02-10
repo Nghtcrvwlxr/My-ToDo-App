@@ -8,15 +8,15 @@ export const ItemAddForm: FC = () => {
 
     const dispatch = useTypedDispatch();
 
-    const [title, setTitle] = useState<string>('');
+    const [title, setTitle] = useState('');
 
-    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         setTitle(event.target.value);
     };
 
-    const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const onFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
-        dispatch(addItem(title))
+        dispatch(addItem(title));
         setTitle('');
     };
 

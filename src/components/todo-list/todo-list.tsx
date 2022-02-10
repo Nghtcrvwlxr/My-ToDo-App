@@ -9,9 +9,10 @@ export const TodoList: FC = () => {
     const todoData = useTypedSelector(state => state.todoListReducer.data);
 
     const elements = todoData.map((element) => {
+        const {...itemProps} = element;
         return (
             <Li key={element.id} className="collection-item">
-                <TodoListItem id={element.id} label={element.label}/>
+                <TodoListItem {...itemProps}/>
             </Li>
         );
     });
