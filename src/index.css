@@ -7,3 +7,14 @@
     text-decoration: line-through;
     color: #9e9e9e;
 }
+
+.btn-small {
+    transition: 0.5s all;
+}
+
+.btn-small.active {
+    background-color: cyan;
+    transition: 0.5s all;
+    transform: scale(1.1);
+    z-index: 5;
+}

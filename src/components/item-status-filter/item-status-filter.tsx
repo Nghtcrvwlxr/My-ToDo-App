@@ -1,28 +1,42 @@
 import React, {FC} from "react";
 import styled from "styled-components";
 
+import {useTypedDispatch, useTypedSelector} from "../../store/utils";
+import {toggleFilter} from "../../store/slices/todo-list-slice";
+
+interface Button {
+    label: string,
+    key: string,
+}
+
 export const ItemStatusFilter: FC = () => {
+
+    const dispatch = useTypedDispatch();
+
+    const filter = useTypedSelector(state => state.todoListReducer.filter);
+
+    const buttons: Button[] = [
+        {label: 'All', key: 'all'},
+        {label: 'Active', key: 'active'},
+        {label: 'Done', key: 'done'},
+    ];
+
+    const elements = buttons.map((element) => {
+        const classNames = 'btn-small ' + (filter === element.key ? 'active' : '');
+        return (
+            <button key={element.label}
+                    className={classNames}
+                    onClick={() => dispatch(toggleFilter(element.key))}>{element.label}</button>
+        );
+    });
+
     return (
         <Container>
-            <Button className="btn-small">All</Button>
-            <Button className="btn-small">Active</Button>
-            <Button className="btn-small">Done</Button>
+            {elements}
         </Container>
     );
 };
 
 const Container = styled.div`
   margin: auto;
-`;
-
-const Button = styled.button`
-  transition: 0.5s all;
-  &:hover {
-    background-color: teal;
-  }
-  &:focus {
-    background-color: cyan;
-    transform: scale(1.1);
-    z-index: 5;
-  }
 `;

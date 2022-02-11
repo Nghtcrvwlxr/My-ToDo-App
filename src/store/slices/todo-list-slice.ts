@@ -1,10 +1,12 @@
 import {createSlice, current, PayloadAction} from "@reduxjs/toolkit";
 
 interface TodoListState {
+    filter: string;
+    search: string;
     data: TodoListItem[];
 }
 
-interface TodoListItem {
+export interface TodoListItem {
     id: number;
     label: string;
     important: boolean;
@@ -12,6 +14,8 @@ interface TodoListItem {
 }
 
 const initialState: TodoListState = {
+    filter: 'all',
+    search: '',
     data: [
         {id: 1, label: 'Learn React', important: false, done: true},
         {id: 2, label: 'Learn Redux', important: false, done: false},
@@ -50,9 +54,15 @@ const todoListSlice = createSlice({
             if (action.payload.property === 'important') state.data[index].important = !state.data[index].important;
             if (action.payload.property === 'done') state.data[index].done = !state.data[index].done;
         },
+        toggleFilter(state, action: PayloadAction<string>) {
+            state.filter = action.payload;
+        },
+        updateSearch(state, action: PayloadAction<string>) {
+            state.search = action.payload;
+        },
     },
 });
 
 export const {reducer: todoListReducer} = todoListSlice;
 
-export const {addItem, deleteItem, toggleProperty} = todoListSlice.actions;
+export const {addItem, deleteItem, toggleProperty, toggleFilter, updateSearch} = todoListSlice.actions;

@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import styled from "styled-components";
+
 import {useTypedDispatch} from "../../store/utils";
 import {toggleProperty, deleteItem} from "../../store/slices/todo-list-slice";
 
@@ -10,7 +11,7 @@ type Props = {
     done: boolean,
 };
 
-export const TodoListItem: FC<Props> = (props) => {
+export const TodoListElement: FC<Props> = (props) => {
 
     const dispatch = useTypedDispatch();
 
