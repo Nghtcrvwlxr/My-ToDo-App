@@ -1,25 +1,14 @@
 import {createSlice, current, PayloadAction} from "@reduxjs/toolkit";
 
-interface TodoListState {
-    filter: string;
-    search: string;
-    data: TodoListItem[];
-}
-
-export interface TodoListItem {
-    id: number;
-    label: string;
-    important: boolean;
-    done: boolean;
-}
+import {TodoListState, TodoListItem} from "../../utils/interfaces";
 
 const initialState: TodoListState = {
     filter: 'all',
     search: '',
     data: [
-        {id: 1, label: 'Learn React', important: false, done: true},
-        {id: 2, label: 'Learn Redux', important: false, done: false},
-        {id: 3, label: 'Learn TypeScript', important: true, done: false},
+//        {id: 1, label: 'Learn React', important: false, done: true},
+//        {id: 2, label: 'Learn Redux', important: false, done: false},
+//        {id: 3, label: 'Learn TypeScript', important: true, done: false},
     ],
 };
 
@@ -27,6 +16,9 @@ const todoListSlice = createSlice({
     name: 'todoListReducer',
     initialState,
     reducers: {
+        loadData(state, action: PayloadAction<TodoListItem[]>) {
+            state.data = action.payload;
+        },
         addItem(state, action: PayloadAction<string>) {
             if (action.payload.trim().length > 3) {
                 let newId;
@@ -45,12 +37,15 @@ const todoListSlice = createSlice({
             }
         },
         deleteItem(state, action: PayloadAction<number>) {
-            state.data = state.data.filter((item) => {
-                return item.id !== action.payload;
-            });
+            const confirmation: boolean = window.confirm(`You sure you want to delete this item?`);
+            if (confirmation) {
+                state.data = state.data.filter((item) => {
+                    return item.id !== action.payload;
+                });
+            }
         },
         toggleProperty(state, action: PayloadAction<{id: number, property: string}>) {
-            const index = action.payload.id - 1;
+            const index: number = state.data.findIndex((element: TodoListItem) => element.id === action.payload.id);
             if (action.payload.property === 'important') state.data[index].important = !state.data[index].important;
             if (action.payload.property === 'done') state.data[index].done = !state.data[index].done;
         },
@@ -65,4 +60,4 @@ const todoListSlice = createSlice({
 
 export const {reducer: todoListReducer} = todoListSlice;
 
-export const {addItem, deleteItem, toggleProperty, toggleFilter, updateSearch} = todoListSlice.actions;
+export const {loadData, addItem, deleteItem, toggleProperty, toggleFilter, updateSearch} = todoListSlice.actions;

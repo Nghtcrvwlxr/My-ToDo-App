@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 import {useTypedSelector} from "../../store/utils";
 
-import {TodoListItem} from "../../store/slices/todo-list-slice";
+import {TodoListItem} from "../../utils/interfaces";
 
 import {TodoListElement} from "../todo-list-item/todo-list-element";
-
 
 export const TodoList: FC = () => {
 
@@ -67,5 +66,4 @@ const Li = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.5rem;
 `;

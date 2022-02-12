@@ -4,29 +4,25 @@ import styled from "styled-components";
 import {useTypedDispatch} from "../../store/utils";
 import {toggleProperty, deleteItem} from "../../store/slices/todo-list-slice";
 
-type Props = {
-    id: number,
-    label: string,
-    important: boolean,
-    done: boolean,
-};
+import {TodoListElementProps} from "../../utils/interfaces";
 
-export const TodoListElement: FC<Props> = (props) => {
+export const TodoListElement: FC<TodoListElementProps> = (props) => {
 
     const dispatch = useTypedDispatch();
 
-    let classNames: string = '';
+    let classNames: string[] = [];
 
     if(props.important) {
-        classNames += ' important';
+        classNames.push('important');
     }
     if(props.done) {
-        classNames += ' done';
+        classNames.push('done');
     }
 
     return (
         <>
-            <span className={classNames}>{props.label}</span>
+            <input type="checkbox" checked={props.done} readOnly={true}/>
+            <span id="item-label" className={classNames.join(' ')}>{props.label}</span>
             <div>
                 <Button
                     className="btn deep-purple lighten-1"
