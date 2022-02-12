@@ -17,3 +17,13 @@ export interface TodoListElementProps {
     important: boolean;
     done: boolean;
 }
+
+export interface LoginFormState {
+    isLoggedIn: boolean;
+    email: string;
+    password: string;
+    username: string;
+    emailValid: boolean;
+    passwordValid: boolean;
+    formValid: boolean;
+}

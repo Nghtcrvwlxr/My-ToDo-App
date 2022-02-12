@@ -1,8 +1,10 @@
 import {combineReducers} from "@reduxjs/toolkit";
 import {sortObjKeysAlphabetically} from "../utils/sort-object-keys";
-import {todoListReducer} from "./slices/todo-list-slice";
 
-const reducers = {todoListReducer};
+import {todoListReducer} from "./slices/todo-list-slice";
+import {loginFormReducer} from "./slices/login-form-slice";
+
+const reducers = {todoListReducer, loginFormReducer};
 
 const sortedReducers = sortObjKeysAlphabetically(reducers);
 

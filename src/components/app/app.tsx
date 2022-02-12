@@ -8,10 +8,11 @@ import {loadData} from "../../store/slices/todo-list-slice";
 
 import {TodoListItem} from "../../utils/interfaces";
 
-import {Header} from "../header/header";
+import {AppHeader} from "../app-header/app-header";
 import {MainPage} from "../pages/main-page";
 import {InfoPage} from "../pages/info-page";
 import {LoginPage} from "../pages/login-page";
+import {AppFooter} from "../app-footer/app-footer";
 
 export const App: FC = () => {
 
@@ -30,15 +31,18 @@ export const App: FC = () => {
 
     return (
         <>
-            <Header/>
-            <Container>
-                <Routes>
-                    <Route path="/" element={<MainPage/>} />
-                    <Route path="/login" element={<LoginPage/>}/>
-                    <Route path="/info" element={<InfoPage/>}/>
-                    <Route path="*" element={<h3 className='center-align'>This page does not exist</h3>}/>
-                </Routes>
-            </Container>
+            <AppHeader/>
+            <main>
+                <Container>
+                    <Routes>
+                        <Route path="/" element={<MainPage/>} />
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/info" element={<InfoPage/>}/>
+                        <Route path="*" element={<h3 className='center-align'>This page does not exist</h3>}/>
+                    </Routes>
+                </Container>
+            </main>
+            <AppFooter/>
         </>
     );
 };
