@@ -1,5 +1,8 @@
 import React, {FC} from "react";
+import {Link} from "react-router-dom";
+
 import styled from "styled-components";
+
 import {useTypedSelector} from "../../store/utils";
 
 export const Header: FC = () => {
@@ -12,11 +15,20 @@ export const Header: FC = () => {
     return (
         <nav>
             <Wrapper className="nav-wrapper purple">
-                <a href="/" className="brand-logo">My ToDo List</a>
+                <Link to="/" className="brand-logo">My ToDo List</Link>
                 <Icon className="large material-icons">assignment</Icon>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li>{doneCount} Done, {todoCount} more to do</li>
-                    <li><Button href="/">About me</Button></li>
+                    <li>
+                        <Button>
+                            <Link to="info">Information</Link>
+                        </Button>
+                    </li>
+                    <li>
+                        <Button>
+                            <Link to="login">Login</Link>
+                        </Button>
+                    </li>
                 </ul>
             </Wrapper>
         </nav>
@@ -28,7 +40,8 @@ const Wrapper = styled.div`
   padding: 0 5rem;
 `;
 
-const Button = styled.a`
+const Button = styled.div`
+  transition: 0.5s all;
   margin-left: 1rem;
   &:hover {
     background-color: cyan;

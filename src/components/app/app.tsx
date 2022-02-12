@@ -1,4 +1,6 @@
 import React, {FC, useEffect} from "react";
+import {Routes, Route} from "react-router-dom";
+
 import styled from "styled-components";
 
 import {useTypedSelector, useTypedDispatch} from "../../store/utils";
@@ -7,9 +9,9 @@ import {loadData} from "../../store/slices/todo-list-slice";
 import {TodoListItem} from "../../utils/interfaces";
 
 import {Header} from "../header/header";
-import {SearchPanel} from "../search-panel/search-panel";
-import {TodoList} from "../todo-list/todo-list";
-import {ItemAddForm} from "../item-add-form/item-add-form";
+import {MainPage} from "../pages/main-page";
+import {InfoPage} from "../pages/info-page";
+import {LoginPage} from "../pages/login-page";
 
 export const App: FC = () => {
 
@@ -30,9 +32,12 @@ export const App: FC = () => {
         <>
             <Header/>
             <Container>
-                <SearchPanel/>
-                <TodoList/>
-                <ItemAddForm/>
+                <Routes>
+                    <Route path="/" element={<MainPage/>} />
+                    <Route path="/login" element={<LoginPage/>}/>
+                    <Route path="/info" element={<InfoPage/>}/>
+                    <Route path="*" element={<h3 className='center-align'>This page does not exist</h3>}/>
+                </Routes>
             </Container>
         </>
     );
