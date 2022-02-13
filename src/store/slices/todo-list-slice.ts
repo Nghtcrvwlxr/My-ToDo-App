@@ -25,19 +25,19 @@ const todoListSlice = createSlice({
                 if (!current(state).data.length) {
                     newId = 1;
                 } else {
-                    newId =  current(state).data[current(state).data.length - 1].id + 1;
+                    newId = current(state).data[current(state).data.length - 1].id + 1;
                 }
                 const newItem = {
                     id: newId,
                     label: action.payload,
                     important: false,
                     done: false,
-                }
+                };
                 state.data.push(newItem);
             }
         },
         deleteItem(state, action: PayloadAction<number>) {
-            const confirmation: boolean = window.confirm(`You sure you want to delete this item?`);
+            const confirmation: boolean = window.confirm(`Are you sure you want to delete this item?`);
             if (confirmation) {
                 state.data = state.data.filter((item) => {
                     return item.id !== action.payload;

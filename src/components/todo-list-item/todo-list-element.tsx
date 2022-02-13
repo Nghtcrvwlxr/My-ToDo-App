@@ -45,6 +45,7 @@ export const TodoListElement: FC<TodoListElementProps> = (props) => {
 };
 
 const Button = styled.button`
+  margin-left: 0.1rem;
   transition: 0.1s all;
   &:active {
     transform: scale(0.9);

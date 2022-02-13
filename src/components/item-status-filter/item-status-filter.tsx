@@ -4,10 +4,7 @@ import styled from "styled-components";
 import {useTypedDispatch, useTypedSelector} from "../../store/utils";
 import {toggleFilter} from "../../store/slices/todo-list-slice";
 
-interface Button {
-    label: string,
-    key: string,
-}
+import {Button} from "../../utils/interfaces";
 
 export const ItemStatusFilter: FC = () => {
 
@@ -21,8 +18,8 @@ export const ItemStatusFilter: FC = () => {
         {label: 'Done', key: 'done'},
     ];
 
-    const elements = buttons.map((element) => {
-        const classNames = 'btn-small ' + (filter === element.key ? 'active' : '');
+    const elements: JSX.Element[] = buttons.map((element) => {
+        const classNames: string = 'btn-small ' + (filter === element.key ? 'active' : '');
         return (
             <button key={element.label}
                     className={classNames}

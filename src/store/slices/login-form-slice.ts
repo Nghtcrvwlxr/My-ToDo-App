@@ -7,8 +7,8 @@ const initialState: LoginFormState = {
     username: '',
     email: '',
     password: '',
-    emailValid: false,
-    passwordValid: false,
+    emailValid: true,
+    passwordValid: true,
     formValid: false,
 };
 
@@ -19,8 +19,8 @@ const loginFormSlice = createSlice({
         validateLoginDetails(state,  action: PayloadAction<{email: string, password: string}>) {
             state.email = action.payload.email;
             state.password = action.payload.password;
-            state.emailValid = !!(action.payload.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
-            state.passwordValid = (action.payload.password.length >= 6);
+            state.emailValid = !!(state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+            state.passwordValid = (state.password.length >= 6);
             state.formValid = (state.emailValid && state.passwordValid);
 
             state.isLoggedIn = state.formValid;

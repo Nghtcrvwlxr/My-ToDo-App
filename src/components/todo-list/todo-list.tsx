@@ -34,9 +34,9 @@ export const TodoList: FC = () => {
         }
     };
 
-    const visibleData = searchData(filterData(todoData, filter), search);
+    const visibleData: TodoListItem[] = searchData(filterData(todoData, filter), search);
 
-    const elements = visibleData!.map((element) => {
+    const elements: JSX.Element[] = visibleData!.map((element) => {
         const {...itemProps} = element;
         return (
             <Li key={element.id} className="collection-item">

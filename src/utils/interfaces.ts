@@ -27,3 +27,8 @@ export interface LoginFormState {
     passwordValid: boolean;
     formValid: boolean;
 }
+
+export interface Button {
+    label: string;
+    key: string;
+}

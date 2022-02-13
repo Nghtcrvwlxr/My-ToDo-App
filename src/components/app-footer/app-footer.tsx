@@ -8,7 +8,7 @@ export const AppFooter: FC = () => {
     const isLogged = useTypedSelector(state => state.loginFormReducer.isLoggedIn);
     const username = useTypedSelector(state => state.loginFormReducer.username);
 
-    const userDetails = (loginDetails: boolean, username: string) => {
+    const userDetails = (): string => {
         if (isLogged) {
             if (username === 'aleks') {
                 return 'Welcome back, Aleks!';
@@ -21,15 +21,14 @@ export const AppFooter: FC = () => {
 
     return (
         <Footer className="page-footer teal lighten-1">
-                <span>{userDetails(isLogged, username)}</span>
+                <span>{userDetails()}</span>
         </Footer>
     );
 };
 
 const Footer = styled.footer`
-  position: absolute;
   width: 100%;
-  bottom: 0;
+  margin-top: 3rem;
   padding: 1.5rem 5rem;
   height: 5rem;
   font-size: 1.5rem;
