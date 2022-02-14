@@ -10,19 +10,10 @@ export const TodoListElement: FC<TodoListElementProps> = (props) => {
 
     const dispatch = useTypedDispatch();
 
-    let classNames: string[] = [];
-
-    if(props.important) {
-        classNames.push('important');
-    }
-    if(props.done) {
-        classNames.push('done');
-    }
-
     return (
         <>
             <input type="checkbox" checked={props.done} readOnly={true}/>
-            <span id="item-label" className={classNames.join(' ')}>{props.label}</span>
+            <Span important={props.important} done={props.done}>{props.label}</Span>
             <div>
                 <Button
                     className="btn deep-purple lighten-1"
@@ -51,4 +42,20 @@ const Button = styled.button`
     transform: scale(0.9);
     z-index: 5;
   }
+`;
+
+interface SpanProps {
+    important: boolean;
+    done: boolean;
+}
+
+const Span = styled.span<SpanProps>`
+  ${props => props.important ? `
+    font-weight: bold;
+    color: #7e57c2;
+  ` : ``};
+  ${props => props.done ? `
+    text-decoration: line-through;
+    color: #9e9e9e;
+  ` : ``};
 `;

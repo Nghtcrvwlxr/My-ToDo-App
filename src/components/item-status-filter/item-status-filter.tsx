@@ -19,11 +19,14 @@ export const ItemStatusFilter: FC = () => {
     ];
 
     const elements: JSX.Element[] = buttons.map((element) => {
-        const classNames: string = 'btn-small ' + (filter === element.key ? 'active' : '');
         return (
-            <button key={element.label}
-                    className={classNames}
-                    onClick={() => dispatch(toggleFilter(element.key))}>{element.label}</button>
+            <FilterButton
+                key={element.key}
+                term={element.key}
+                filter={filter}
+                className="btn-small"
+                onClick={() => dispatch(toggleFilter(element.key))}>{element.label}
+            </FilterButton>
         );
     });
 
@@ -37,3 +40,20 @@ export const ItemStatusFilter: FC = () => {
 const Container = styled.div`
   margin: auto;
 `;
+
+interface FilterButtonProps {
+    filter: string;
+    term: string;
+}
+
+const FilterButton = styled.button<FilterButtonProps>`
+  transition: 0.5s all;
+  &:focus {
+    background-color: cyan;
+  };
+  ${props => (props.filter === props.term) ? `
+    background-color: cyan;
+    transform: scale(1.1);
+    z-index: 5;
+  ` : ``};
+`

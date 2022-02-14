@@ -32,7 +32,7 @@ export const App: FC = () => {
     return (
         <>
             <AppHeader/>
-            <main>
+            <Main>
                 <Container>
                     <Routes>
                         <Route path="/" element={<MainPage/>} />
@@ -41,7 +41,7 @@ export const App: FC = () => {
                         <Route path="*" element={<h3 className='center-align'>This page does not exist</h3>}/>
                     </Routes>
                 </Container>
-            </main>
+            </Main>
             <AppFooter/>
         </>
     );
@@ -51,4 +51,8 @@ const Container = styled.div`
   max-width: 900px;
   margin: 1rem auto 0 auto;
   padding: 0 1rem;
+`;
+
+const Main = styled.main`
+  flex: 1 0 auto;
 `;

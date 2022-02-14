@@ -63,7 +63,11 @@ export const TodoList: FC = () => {
 };
 
 const Li = styled.li`
+  [type="checkbox"]+span:not(.lever) {
+    font-size: 1.5rem;
+  };
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.5rem;
 `;

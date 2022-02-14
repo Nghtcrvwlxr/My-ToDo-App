@@ -3,36 +3,3 @@
     display: flex;
     flex-direction: column;
 }
-
-main {
-    flex: 1 0 auto;
-}
-
-#item-label {
-    font-size: 1.5rem;
-}
-
-.important {
-    font-weight: bold;
-    color: #7e57c2;
-}
-
-.done {
-    text-decoration: line-through;
-    color: #9e9e9e;
-}
-
-.invalid {
-    color: red;
-}
-
-.btn-small {
-    transition: 0.5s all;
-}
-
-.btn-small.active {
-    background-color: cyan;
-    transition: 0.5s all;
-    transform: scale(1.1);
-    z-index: 5;
-}
