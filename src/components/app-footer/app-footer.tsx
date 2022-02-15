@@ -1,14 +1,14 @@
 import React, {FC} from "react";
+
 import styled from "styled-components";
 
 import {useTypedSelector} from "../../store/utils";
 
 export const AppFooter: FC = () => {
-
     const isLogged = useTypedSelector(state => state.loginFormReducer.isLoggedIn);
     const username = useTypedSelector(state => state.loginFormReducer.username);
 
-    const userDetails = (): string => {
+    const userDetails = () => {
         if (isLogged) {
             if (username === 'aleks') {
                 return 'Welcome back, Aleks!';
@@ -17,7 +17,7 @@ export const AppFooter: FC = () => {
             }
         }
         return 'Please login to get access to Information page';
-    }
+    };
 
     return (
         <Footer className="page-footer teal lighten-1">

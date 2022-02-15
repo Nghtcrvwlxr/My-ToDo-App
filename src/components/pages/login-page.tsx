@@ -4,33 +4,33 @@ import {useTypedDispatch, useTypedSelector} from "../../store/utils";
 import {validateLoginDetails} from "../../store/slices/login-form-slice";
 
 export const LoginPage: FC = () => {
-
     const dispatch = useTypedDispatch();
 
     const loginData = useTypedSelector(state => state.loginFormReducer);
 
-    let emailInputClass: string = '';
-    let emailNote: string = '';
-    let passwordInputClass: string = '';
-    let passwordNote: string = '';
-
-    if (!loginData.emailValid) {
-        emailInputClass = (loginData.emailValid) ? '' : 'invalid';
-        emailNote = '(email is invalid)';
-    }
-    if (!loginData.passwordValid) {
-        passwordInputClass = (loginData.passwordValid) ? '' : 'invalid';
-        passwordNote = '(password is invalid)';
-    }
-
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const onEmailInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         setEmail(event.target.value);
     };
-    const [password, setPassword] = useState('');
     const onPasswordInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         setPassword(event.target.value);
     };
+
+    let emailInputClass = '';
+    let emailNote = '';
+    let passwordInputClass = '';
+    let passwordNote = '';
+
+    if (!loginData.emailValid) {
+        emailInputClass = 'invalid';
+        emailNote = '(email is invalid)';
+    }
+    if (!loginData.passwordValid) {
+        passwordInputClass = 'invalid';
+        passwordNote = '(password is invalid)';
+    }
 
     const onFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();

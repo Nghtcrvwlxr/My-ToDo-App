@@ -1,18 +1,18 @@
 import React, {FC} from "react";
+
 import styled from "styled-components";
 
 import {useTypedDispatch} from "../../store/utils";
 import {toggleProperty, deleteItem} from "../../store/slices/todo-list-slice";
 
-import {TodoListElementProps} from "../../utils/interfaces";
+import {TodoListElementProps} from "../../utils/types";
 
 export const TodoListElement: FC<TodoListElementProps> = (props) => {
-
     const dispatch = useTypedDispatch();
 
     return (
         <>
-            <input type="checkbox" checked={props.done} readOnly={true}/>
+            <input type="checkbox" checked={props.done} readOnly/>
             <Span important={props.important} done={props.done}>{props.label}</Span>
             <div>
                 <Button

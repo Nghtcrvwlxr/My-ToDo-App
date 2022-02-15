@@ -1,5 +1,6 @@
-import {AppDispatch} from "./store";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
+
+import {AppDispatch} from "./store";
 import {RootState} from "./reducer";
 
 export const useTypedDispatch = () => useDispatch<AppDispatch>();

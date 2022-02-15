@@ -1,4 +1,5 @@
 import React, {FC, useState} from "react";
+
 import styled from "styled-components";
 
 import {useTypedDispatch} from "../../store/utils";
@@ -7,7 +8,6 @@ import {updateSearch} from "../../store/slices/todo-list-slice";
 import {ItemStatusFilter} from "../item-status-filter/item-status-filter";
 
 export const SearchPanel: FC = () => {
-
     const dispatch = useTypedDispatch();
 
     const [title, setTitle] = useState('');

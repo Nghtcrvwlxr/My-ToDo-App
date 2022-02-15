@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {LoginFormState} from "../../utils/interfaces";
+import {LoginFormState} from "../../utils/types";
 
 const initialState: LoginFormState = {
     isLoggedIn: false,
@@ -19,10 +19,9 @@ const loginFormSlice = createSlice({
         validateLoginDetails(state,  action: PayloadAction<{email: string, password: string}>) {
             state.email = action.payload.email;
             state.password = action.payload.password;
-            state.emailValid = !!(state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
-            state.passwordValid = (state.password.length >= 6);
-            state.formValid = (state.emailValid && state.passwordValid);
-
+            state.emailValid = !!state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            state.passwordValid = state.password.length >= 6;
+            state.formValid = state.emailValid && state.passwordValid;
             state.isLoggedIn = state.formValid;
 
             if (state.isLoggedIn) {

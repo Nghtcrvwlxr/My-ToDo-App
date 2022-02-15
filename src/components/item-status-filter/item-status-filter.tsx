@@ -1,13 +1,13 @@
 import React, {FC} from "react";
+
 import styled from "styled-components";
 
 import {useTypedDispatch, useTypedSelector} from "../../store/utils";
 import {toggleFilter} from "../../store/slices/todo-list-slice";
 
-import {Button} from "../../utils/interfaces";
+import {Button} from "../../utils/types";
 
 export const ItemStatusFilter: FC = () => {
-
     const dispatch = useTypedDispatch();
 
     const filter = useTypedSelector(state => state.todoListReducer.filter);

@@ -6,11 +6,10 @@ import styled from "styled-components";
 import {useTypedSelector} from "../../store/utils";
 
 export const AppHeader: FC = () => {
-
     const todoData = useTypedSelector(state => state.todoListReducer.data);
 
-    const doneCount: number = todoData.filter(element => element.done).length;
-    const todoCount: number = todoData.filter(element => !element.done).length;
+    const doneCount = todoData.filter(element => element.done).length;
+    const todoCount = todoData.filter(element => !element.done).length;
 
     return (
         <header>

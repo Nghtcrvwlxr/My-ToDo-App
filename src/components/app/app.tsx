@@ -6,7 +6,7 @@ import styled from "styled-components";
 import {useTypedSelector, useTypedDispatch} from "../../store/utils";
 import {loadData} from "../../store/slices/todo-list-slice";
 
-import {TodoListItem} from "../../utils/interfaces";
+import {TodoListItem} from "../../utils/types";
 
 import {AppHeader} from "../app-header/app-header";
 import {MainPage} from "../pages/main-page";
@@ -15,7 +15,6 @@ import {LoginPage} from "../pages/login-page";
 import {AppFooter} from "../app-footer/app-footer";
 
 export const App: FC = () => {
-
     const dispatch = useTypedDispatch();
 
     const todoData = useTypedSelector(state => state.todoListReducer.data);

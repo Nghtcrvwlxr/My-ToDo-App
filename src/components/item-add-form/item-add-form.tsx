@@ -1,11 +1,11 @@
 import React, {FC, useState} from "react";
+
 import styled from "styled-components";
 
 import {useTypedDispatch} from "../../store/utils";
 import {addItem} from "../../store/slices/todo-list-slice";
 
 export const ItemAddForm: FC = () => {
-
     const dispatch = useTypedDispatch();
 
     const [title, setTitle] = useState('');

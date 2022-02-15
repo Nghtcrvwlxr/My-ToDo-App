@@ -1,32 +1,32 @@
 import React, {FC} from "react";
+
 import styled from "styled-components";
 
 import {useTypedSelector} from "../../store/utils";
 
-import {TodoListItem} from "../../utils/interfaces";
+import {TodoListItem} from "../../utils/types";
 
 import {TodoListElement} from "../todo-list-item/todo-list-element";
 
 export const TodoList: FC = () => {
-
     const todoData = useTypedSelector(state => state.todoListReducer.data);
     const filter = useTypedSelector(state => state.todoListReducer.filter);
     const search = useTypedSelector(state => state.todoListReducer.search);
 
-    const filterData = (data: TodoListItem[], filter: string): TodoListItem[] => {
-        if (filter === 'all') {
-            return data;
+    const filterData = (data: TodoListItem[], filter: string) => {
+        switch (filter){
+            case 'all':
+                return data;
+            case 'active':
+                return data.filter(item => !item.done);
+            case 'done':
+                return data.filter(item => item.done);
+            default:
+                return data;
         }
-        if (filter === 'active') {
-            return data.filter(item => !item.done);
-        }
-        if (filter === 'done') {
-            return data.filter(item => item.done);
-        }
-        return data;
     };
 
-    const searchData = (data: TodoListItem[], search: string): TodoListItem[] => {
+    const searchData = (data: TodoListItem[], search: string) => {
         if (search) {
             return data.filter(item => item.label.toLowerCase().indexOf(search.toLowerCase()) > -1);
         } else {
@@ -34,13 +34,12 @@ export const TodoList: FC = () => {
         }
     };
 
-    const visibleData: TodoListItem[] = searchData(filterData(todoData, filter), search);
+    const visibleData = searchData(filterData(todoData, filter), search);
 
-    const elements: JSX.Element[] = visibleData!.map((element) => {
-        const {...itemProps} = element;
+    const elements = visibleData!.map((element) => {
         return (
             <Li key={element.id} className="collection-item">
-                <TodoListElement {...itemProps}/>
+                <TodoListElement {...element}/>
             </Li>
         );
     });

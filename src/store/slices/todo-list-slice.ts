@@ -1,6 +1,6 @@
-import {createSlice, current, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {TodoListState, TodoListItem} from "../../utils/interfaces";
+import {TodoListState, TodoListItem} from "../../utils/types";
 
 const initialState: TodoListState = {
     filter: 'all',
@@ -21,11 +21,11 @@ const todoListSlice = createSlice({
         },
         addItem(state, action: PayloadAction<string>) {
             if (action.payload.trim().length > 3) {
-                let newId;
-                if (!current(state).data.length) {
+                let newId: number;
+                if (!state.data.length) {
                     newId = 1;
                 } else {
-                    newId = current(state).data[current(state).data.length - 1].id + 1;
+                    newId = state.data[state.data.length - 1].id + 1;
                 }
                 const newItem = {
                     id: newId,
@@ -45,7 +45,7 @@ const todoListSlice = createSlice({
             }
         },
         toggleProperty(state, action: PayloadAction<{id: number, property: string}>) {
-            const index: number = state.data.findIndex((element: TodoListItem) => element.id === action.payload.id);
+            const index = state.data.findIndex((element) => element.id === action.payload.id);
             if (action.payload.property === 'important') state.data[index].important = !state.data[index].important;
             if (action.payload.property === 'done') state.data[index].done = !state.data[index].done;
         },
