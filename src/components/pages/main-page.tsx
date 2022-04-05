@@ -1,15 +1,15 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 
-import {SearchPanel} from "../search-panel/search-panel";
-import {TodoList} from "../todo-list/todo-list";
-import {ItemAddForm} from "../item-add-form/item-add-form";
+import { ItemAddForm } from "../item-add-form/item-add-form";
+import { SearchPanel } from "../search-panel/search-panel";
+import { TodoList } from "../todo-list/todo-list";
 
 export const MainPage: FC = () => {
-    return (
-        <>
-            <SearchPanel/>
-            <TodoList/>
-            <ItemAddForm/>
-        </>
-    );
+  return (
+    <>
+      <SearchPanel />
+      <TodoList />
+      <ItemAddForm />
+    </>
+  );
 };

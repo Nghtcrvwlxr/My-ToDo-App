@@ -1,40 +1,36 @@
-import React, {FC} from "react";
-
+import React, { FC } from "react";
 import styled from "styled-components";
 
-import {useTypedDispatch, useTypedSelector} from "../../store/utils";
-import {toggleFilter} from "../../store/slices/todo-list-slice";
-
-import {Button} from "../../utils/types";
+import { toggleFilter } from "../../store/slices/todo-list-slice";
+import { useTypedDispatch, useTypedSelector } from "../../store/utils";
+import { Button } from "../../utils/types";
 
 export const ItemStatusFilter: FC = () => {
-    const dispatch = useTypedDispatch();
+  const dispatch = useTypedDispatch();
 
-    const filter = useTypedSelector(state => state.todoListReducer.filter);
+  const filter = useTypedSelector((state) => state.todoListReducer.filter);
 
-    const buttons: Button[] = [
-        {label: 'All', key: 'all'},
-        {label: 'Active', key: 'active'},
-        {label: 'Done', key: 'done'},
-    ];
+  const buttons: Button[] = [
+    { label: "All", key: "all" },
+    { label: "Active", key: "active" },
+    { label: "Done", key: "done" },
+  ];
 
-    const elements: JSX.Element[] = buttons.map((element) => {
-        return (
-            <FilterButton
-                key={element.key}
-                term={element.key}
-                filter={filter}
-                className="btn-small"
-                onClick={() => dispatch(toggleFilter(element.key))}>{element.label}
-            </FilterButton>
-        );
-    });
-
+  const elements: JSX.Element[] = buttons.map((element) => {
     return (
-        <Container>
-            {elements}
-        </Container>
+      <FilterButton
+        key={element.key}
+        term={element.key}
+        filter={filter}
+        className="btn-small"
+        onClick={() => dispatch(toggleFilter(element.key))}
+      >
+        {element.label}
+      </FilterButton>
     );
+  });
+
+  return <Container>{elements}</Container>;
 };
 
 const Container = styled.div`
@@ -42,18 +38,21 @@ const Container = styled.div`
 `;
 
 interface FilterButtonProps {
-    filter: string;
-    term: string;
+  filter: string;
+  term: string;
 }
 
 const FilterButton = styled.button<FilterButtonProps>`
   transition: 0.5s all;
   &:focus {
     background-color: cyan;
-  };
-  ${props => (props.filter === props.term) ? `
+  }
+  ${(props) =>
+    props.filter === props.term
+      ? `
     background-color: cyan;
     transform: scale(1.1);
     z-index: 5;
-  ` : ``};
-`
+  `
+      : ``};
+`;

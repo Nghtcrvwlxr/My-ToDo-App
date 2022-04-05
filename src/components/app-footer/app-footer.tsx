@@ -1,29 +1,29 @@
-import React, {FC} from "react";
-
+import React, { FC } from "react";
 import styled from "styled-components";
 
-import {useTypedSelector} from "../../store/utils";
+import { useTypedSelector } from "../../store/utils";
 
 export const AppFooter: FC = () => {
-    const isLogged = useTypedSelector(state => state.loginFormReducer.isLoggedIn);
-    const username = useTypedSelector(state => state.loginFormReducer.username);
+  const isLogged = useTypedSelector(
+    (state) => state.loginFormReducer.isLoggedIn
+  );
+  const username = useTypedSelector((state) => state.loginFormReducer.username);
 
-    const userDetails = () => {
-        if (isLogged) {
-            if (username === 'aleks') {
-                return 'Welcome back, Aleks!';
-            } else {
-                return 'Unknown user';
-            }
-        }
-        return 'Please login to get access to Information page';
-    };
+  const userDetails = () => {
+    if (isLogged) {
+      if (username === "aleks") {
+        return "Welcome back, Aleks!";
+      }
+      return "Unknown user";
+    }
+    return "Please login to get access to Information page";
+  };
 
-    return (
-        <Footer className="page-footer teal lighten-1">
-                <span>{userDetails()}</span>
-        </Footer>
-    );
+  return (
+    <Footer className="page-footer teal lighten-1">
+      <span>{userDetails()}</span>
+    </Footer>
+  );
 };
 
 const Footer = styled.footer`
