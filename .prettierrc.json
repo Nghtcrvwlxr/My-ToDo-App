@@ -6,6 +6,14 @@
   "singleQuote": false,
   "trailingComma": "es5",
   "bracketSpacing": true,
-  "jsxBracketSameLine": false,
-  "eslintIntegration": true
+  "eslintIntegration": true,
+  "importOrder": [
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@ui/(.*)$",
+    "^[./].*(?<!\\.(c|le|sc)ss)$", "\\.(c|le|sc)ss$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": false
 }

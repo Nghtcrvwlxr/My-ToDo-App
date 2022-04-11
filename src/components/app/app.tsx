@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+
 import styled from "styled-components";
 
 import { loadData } from "../../store/slices/todo-list-slice";
@@ -28,7 +29,7 @@ export const App: FC = () => {
   }, [todoData]);
 
   return (
-    <>
+    <Application>
       <AppHeader />
       <Main>
         <Container>
@@ -46,9 +47,15 @@ export const App: FC = () => {
         </Container>
       </Main>
       <AppFooter />
-    </>
+    </Application>
   );
 };
+
+const Application = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 const Container = styled.div`
   max-width: 900px;
