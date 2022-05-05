@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 
-import { validateLoginDetails } from "../../store/slices/login-form-slice";
-import { useTypedDispatch, useTypedSelector } from "../../store/utils";
+import { validateLoginDetails } from "../store/slices/login-form-slice";
+import { useTypedDispatch, useTypedSelector } from "../store/utils";
 
 export const LoginPage: FC = () => {
   const dispatch = useTypedDispatch();

@@ -3,14 +3,14 @@ import { Route, Routes } from "react-router-dom";
 
 import styled from "styled-components";
 
-import { loadData } from "../../store/slices/todo-list-slice";
-import { useTypedDispatch, useTypedSelector } from "../../store/utils";
-import { TodoListItem } from "../../utils/types";
-import { AppFooter } from "../app-footer/app-footer";
-import { AppHeader } from "../app-header/app-header";
+import { AppFooter } from "../components/app-footer/app-footer";
+import { AppHeader } from "../components/app-header/app-header";
 import { InfoPage } from "../pages/info-page";
 import { LoginPage } from "../pages/login-page";
 import { MainPage } from "../pages/main-page";
+import { loadData } from "../store/slices/todo-list-slice";
+import { useTypedDispatch, useTypedSelector } from "../store/utils";
+import { TodoListItem } from "../utils/types";
 
 export const App: FC = () => {
   const dispatch = useTypedDispatch();

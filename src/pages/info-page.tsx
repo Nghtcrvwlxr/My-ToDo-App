@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Navigate } from "react-router-dom";
 
-import { useTypedSelector } from "../../store/utils";
+import { useTypedSelector } from "../store/utils";
 
 export const InfoPage: FC = () => {
   const isLoggedIn = useTypedSelector(

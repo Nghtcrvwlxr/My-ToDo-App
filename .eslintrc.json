@@ -26,33 +26,15 @@
   },
   "plugins": ["react", "@typescript-eslint", "import", "@emotion", "prettier"],
   "rules": {
-    "import/prefer-default-export": "off",
-    "sort-imports": ["warn", {
-      "ignoreCase": true,
-      "ignoreDeclarationSort": true,
-      "ignoreMemberSort": true,
-      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-      "allowSeparatedGroups": true
-    }],
-    "import/order": [
-      "warn",
+    "prettier/prettier": [
+      "error",
       {
-        "groups": ["builtin", "external", "internal"],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "external",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["react"],
-        "newlines-between": "ignore",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
+        "endOfLine": "auto"
       }
     ],
+    "import/prefer-default-export": "off",
+    "sort-imports": "off",
+    "import/order": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-esling/ban-types": "off",
     "@typescript-eslint/no-use-before-define": "off",
@@ -74,6 +56,7 @@
         }
       }
     ],
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "linebreak-style": "off"
   }
 }

@@ -6,6 +6,6 @@
 
 **Desktop version;**
 
-Components design and styling is in test form;
+Components design and styling are in test form;
 
 Tech stack: TypeScript, React, React-Router, Redux, Redux-Toolkit, styled-components;
