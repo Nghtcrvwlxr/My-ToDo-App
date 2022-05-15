@@ -1,17 +1,18 @@
 import React, { FC } from "react";
 
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { ButtonGroup, Button, ButtonBaseProps, useTheme } from "@mui/material";
 
 import { toggleFilter } from "../../store/slices/todo-list-slice";
 import { useTypedDispatch, useTypedSelector } from "../../store/utils";
-import { Button } from "../../utils/types";
+import { StatusButtonTemplate } from "../../utils/types";
 
 export const ItemStatusFilter: FC = () => {
+  const theme = useTheme();
   const dispatch = useTypedDispatch();
-
   const filter = useTypedSelector((state) => state.todoListReducer.filter);
 
-  const buttons: Button[] = [
+  const buttons: StatusButtonTemplate[] = [
     { label: "All", key: "all" },
     { label: "Active", key: "active" },
     { label: "Done", key: "done" },
@@ -23,7 +24,8 @@ export const ItemStatusFilter: FC = () => {
         key={element.key}
         term={element.key}
         filter={filter}
-        className="btn-small"
+        hovercolor={theme.palette.info.dark}
+        activecolor={theme.palette.info.main}
         onClick={() => dispatch(toggleFilter(element.key))}
       >
         {element.label}
@@ -31,29 +33,49 @@ export const ItemStatusFilter: FC = () => {
     );
   });
 
-  return <Container>{elements}</Container>;
+  return (
+    <Container>
+      <ButtonGroup
+        variant="contained"
+        color="secondary"
+        size="medium"
+        aria-label="button group"
+      >
+        {elements}
+      </ButtonGroup>
+    </Container>
+  );
 };
 
 const Container = styled.div`
   margin: auto;
 `;
 
-interface FilterButtonProps {
+interface FilterButtonProps extends ButtonBaseProps {
   filter: string;
   term: string;
+  hovercolor: string;
+  activecolor: string;
 }
 
-const FilterButton = styled.button<FilterButtonProps>`
+const FilterButton = styled(Button)<FilterButtonProps>`
   transition: 0.5s all;
-  &:focus {
-    background-color: cyan;
-  }
+  outline: 1px solid dimgray;
   ${(props) =>
-    props.filter === props.term
-      ? `
-    background-color: cyan;
+    props.filter === props.term &&
+    `
+    background-color: ${props.activecolor};
     transform: scale(1.1);
     z-index: 5;
-  `
-      : ``};
+  `};
+  &:hover {
+    background-color: ${(props) => props.hovercolor};
+  }
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  @media (max-width: 425px) {
+    padding: 6px 14px;
+  }
 `;

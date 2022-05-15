@@ -1,17 +1,17 @@
 import React, { FC } from "react";
 
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 import { useTypedSelector } from "../../store/utils";
-import { TodoListItem } from "../../utils/types";
-import { TodoListElement } from "../todo-list-item/todo-list-element";
+import { TodoListElementTemplate } from "../../utils/types";
+import { TodoListElement } from "../todo-list-element/todo-list-element";
 
 export const TodoList: FC = () => {
   const todoData = useTypedSelector((state) => state.todoListReducer.data);
   const filter = useTypedSelector((state) => state.todoListReducer.filter);
   const search = useTypedSelector((state) => state.todoListReducer.search);
 
-  const filterData = (data: TodoListItem[], filter: string) => {
+  const filterData = (data: TodoListElementTemplate[], filter: string) => {
     switch (filter) {
       case "all":
         return data;
@@ -24,7 +24,7 @@ export const TodoList: FC = () => {
     }
   };
 
-  const searchData = (data: TodoListItem[], search: string) => {
+  const searchData = (data: TodoListElementTemplate[], search: string) => {
     if (search) {
       return data.filter(
         (item) => item.label.toLowerCase().indexOf(search.toLowerCase()) > -1
@@ -36,30 +36,21 @@ export const TodoList: FC = () => {
   const visibleData = searchData(filterData(todoData, filter), search);
 
   const elements = visibleData.map((element) => {
-    return (
-      <Li key={element.id} className="collection-item">
-        <TodoListElement {...element} />
-      </Li>
-    );
+    return <TodoListElement key={element.id} {...element} />;
   });
 
   if (todoData.length <= 0) {
     return (
-      <ul className="collection with-header">
-        <Li className="collection-item">Add something that needs to be done</Li>
-      </ul>
+      <Ul>
+        <li>Add something that needs to be done</li>
+      </Ul>
     );
   }
 
-  return <ul className="collection with-header">{elements}</ul>;
+  return <Ul>{elements}</Ul>;
 };
 
-const Li = styled.li`
-  [type="checkbox"] + span:not(.lever) {
-    font-size: 1.5rem;
-  }
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.5rem;
+const Ul = styled.ul`
+  padding: 0;
+  list-style-type: none;
 `;

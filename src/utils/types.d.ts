@@ -1,21 +1,10 @@
+import { PaletteMode } from "@mui/material";
+
 export interface TodoListState {
+  mode: PaletteMode;
   filter: string;
   search: string;
-  data: TodoListItem[];
-}
-
-export interface TodoListItem {
-  id: number;
-  label: string;
-  important: boolean;
-  done: boolean;
-}
-
-export interface TodoListElementProps {
-  id: number;
-  label: string;
-  important: boolean;
-  done: boolean;
+  data: TodoListElementTemplate[];
 }
 
 export interface LoginFormState {
@@ -28,7 +17,21 @@ export interface LoginFormState {
   formValid: boolean;
 }
 
-export interface Button {
+export interface StatusButtonTemplate {
   label: string;
   key: string;
+}
+
+export interface TodoListElementTemplate {
+  id: number;
+  label: string;
+  important: boolean;
+  done: boolean;
+}
+
+export interface TodoListElementProps {
+  id: number;
+  label: string;
+  important: boolean;
+  done: boolean;
 }

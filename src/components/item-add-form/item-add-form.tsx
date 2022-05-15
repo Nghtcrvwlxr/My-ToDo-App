@@ -1,13 +1,14 @@
 import React, { FC, useState } from "react";
 
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { Box, Button, TextField, useTheme } from "@mui/material";
 
 import { addItem } from "../../store/slices/todo-list-slice";
 import { useTypedDispatch } from "../../store/utils";
 
 export const ItemAddForm: FC = () => {
+  const theme = useTheme();
   const dispatch = useTypedDispatch();
-
   const [title, setTitle] = useState("");
 
   const onInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -21,34 +22,51 @@ export const ItemAddForm: FC = () => {
   };
 
   return (
-    <Form onSubmit={onFormSubmit}>
-      <Input
-        onChange={onInputChange}
-        placeholder="What needs to be done?"
-        id="add_input"
-        type="text"
-        value={title}
-        className="validate"
-      />
-      <Button className="btn btn-large">Add</Button>
-    </Form>
+    <Box component="form" autoComplete="off" onSubmit={onFormSubmit}>
+      <Wrapper>
+        <AddFormTextField
+          id="outlined-basic"
+          label="What needs to be done?"
+          variant="outlined"
+          color="secondary"
+          type="text"
+          fullWidth
+          value={title}
+          onChange={onInputChange}
+        />
+        <AddFormButton
+          type="submit"
+          variant="contained"
+          color="secondary"
+          size="large"
+          sx={{
+            "&:hover": {
+              backgroundColor: theme.palette.info.main,
+            },
+          }}
+        >
+          Add
+        </AddFormButton>
+      </Wrapper>
+    </Box>
   );
 };
 
-const Form = styled.form`
+const Wrapper = styled(Box)`
   display: flex;
+  gap: 1rem;
+  @media (max-width: 425px) {
+    gap: 0.5rem;
+  }
 `;
 
-const Input = styled.input`
-  width: auto;
-  flex-grow: 1;
-  align-items: center;
+const AddFormTextField = styled(TextField)`
+  font-size: 0.5rem;
 `;
 
-const Button = styled.button`
-  margin-left: 1rem;
-  transition: 0.5s all;
-  &:hover {
-    background-color: teal;
+const AddFormButton = styled(Button)`
+  @media (max-width: 425px) {
+    padding: 4px 8px;
+    font-size: 14px;
   }
 `;

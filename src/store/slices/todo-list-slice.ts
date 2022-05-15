@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { TodoListItem, TodoListState } from "../../utils/types";
+import { TodoListElementTemplate, TodoListState } from "../../utils/types";
 
 const initialState: TodoListState = {
+  mode: "light",
   filter: "all",
   search: "",
   data: [
@@ -16,7 +17,7 @@ const todoListSlice = createSlice({
   name: "todoListReducer",
   initialState,
   reducers: {
-    loadData(state, action: PayloadAction<TodoListItem[]>) {
+    loadData(state, action: PayloadAction<TodoListElementTemplate[]>) {
       state.data = action.payload;
     },
     addItem(state, action: PayloadAction<string>) {
@@ -64,6 +65,13 @@ const todoListSlice = createSlice({
     updateSearch(state, action: PayloadAction<string>) {
       state.search = action.payload;
     },
+    toggleThemeMode(state) {
+      if (state.mode === "light") {
+        state.mode = "dark";
+      } else {
+        state.mode = "light";
+      }
+    },
   },
 });
 
@@ -76,4 +84,5 @@ export const {
   toggleProperty,
   toggleFilter,
   updateSearch,
+  toggleThemeMode,
 } = todoListSlice.actions;
