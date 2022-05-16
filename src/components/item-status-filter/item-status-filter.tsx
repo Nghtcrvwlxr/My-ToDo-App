@@ -18,17 +18,17 @@ export const ItemStatusFilter: FC = () => {
     { label: "Done", key: "done" },
   ];
 
-  const elements: JSX.Element[] = buttons.map((element) => {
+  const elements: JSX.Element[] = buttons.map(({ key, label }) => {
     return (
       <FilterButton
-        key={element.key}
-        term={element.key}
+        key={key}
+        term={key}
         filter={filter}
         hovercolor={theme.palette.info.dark}
         activecolor={theme.palette.info.main}
-        onClick={() => dispatch(toggleFilter(element.key))}
+        onClick={() => dispatch(toggleFilter(key))}
       >
-        {element.label}
+        {label}
       </FilterButton>
     );
   });
@@ -61,15 +61,15 @@ interface FilterButtonProps extends ButtonBaseProps {
 const FilterButton = styled(Button)<FilterButtonProps>`
   transition: 0.5s all;
   outline: 1px solid dimgray;
-  ${(props) =>
-    props.filter === props.term &&
+  ${({ filter, term, activecolor }) =>
+    filter === term &&
     `
-    background-color: ${props.activecolor};
+    background-color: ${activecolor};
     transform: scale(1.1);
     z-index: 5;
   `};
   &:hover {
-    background-color: ${(props) => props.hovercolor};
+    background-color: ${({ hovercolor }) => hovercolor};
   }
   @media (max-width: 600px) {
     font-size: 12px;

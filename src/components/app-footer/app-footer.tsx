@@ -14,10 +14,10 @@ export const AppFooter: FC = () => {
 
   const userDetails = () => {
     if (isLogged) {
-      if (username === "aleks") {
+      if (username === "Aleks") {
         return "Welcome back, Aleks!";
       }
-      return "Welcome, guest";
+      return "Welcome, Guest";
     }
     return "Please login to get access to the Information page";
   };

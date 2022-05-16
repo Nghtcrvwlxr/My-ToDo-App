@@ -8,7 +8,13 @@ import { Button, Checkbox } from "@mui/material";
 
 import { deleteItem, toggleProperty } from "../../store/slices/todo-list-slice";
 import { useTypedDispatch } from "../../store/utils";
-import { TodoListElementProps } from "../../utils/types";
+
+interface TodoListElementProps {
+  id: number;
+  label: string;
+  important: boolean;
+  done: boolean;
+}
 
 export const TodoListElement: FC<TodoListElementProps> = ({
   id,
@@ -105,14 +111,14 @@ interface SpanProps {
 
 const Span = styled.span<SpanProps>`
   word-break: break-word;
-  ${(props) =>
-    props.important &&
+  ${({ important, highlight }) =>
+    important &&
     `
     font-weight: bold;
-    color: ${props.highlight};
+    color: ${highlight};
   `};
-  ${(props) =>
-    props.done &&
+  ${({ done }) =>
+    done &&
     `
     text-decoration: line-through;
     color: gray;

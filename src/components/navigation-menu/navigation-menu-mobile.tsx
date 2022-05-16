@@ -1,11 +1,26 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Menu, Fade, MenuItem } from "@mui/material";
 
-export const NavigationMenuMobile = () => {
+import { useTypedSelector } from "../../store/utils";
+
+interface NavigationMenuMobileProps {
+  loginButtonLabel: string;
+  loginButtonPath: string;
+  onClickFn: () => void;
+}
+
+export const NavigationMenuMobile: FC<NavigationMenuMobileProps> = ({
+  loginButtonLabel,
+  loginButtonPath,
+  onClickFn,
+}) => {
+  const isLoggedIn = useTypedSelector(
+    (state) => state.loginFormReducer.isLoggedIn
+  );
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -13,6 +28,13 @@ export const NavigationMenuMobile = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const loginButtonClickHandler = () => {
+    handleClose();
+    if (isLoggedIn) {
+      onClickFn();
+    }
   };
 
   return (
@@ -40,8 +62,10 @@ export const NavigationMenuMobile = () => {
         <MobileNavigationLink to="info" tabIndex={-1}>
           <MenuItem onClick={handleClose}>Information</MenuItem>
         </MobileNavigationLink>
-        <MobileNavigationLink to="login" tabIndex={-1}>
-          <MenuItem onClick={handleClose}>Login</MenuItem>
+        <MobileNavigationLink to={loginButtonPath} tabIndex={-1}>
+          <MenuItem onClick={loginButtonClickHandler}>
+            {loginButtonLabel}
+          </MenuItem>
         </MobileNavigationLink>
       </Menu>
     </MobileMenu>

@@ -5,11 +5,8 @@ import { LoginFormState } from "../../utils/types";
 const initialState: LoginFormState = {
   isLoggedIn: false,
   username: "",
-  email: "",
-  password: "",
   emailValid: true,
   passwordValid: true,
-  formValid: false,
 };
 
 const loginFormSlice = createSlice({
@@ -18,31 +15,29 @@ const loginFormSlice = createSlice({
   reducers: {
     validateLoginDetails(
       state,
-      action: PayloadAction<{ email: string; password: string }>
+      {
+        payload: { email, password },
+      }: PayloadAction<{ email: string; password: string }>
     ) {
-      state.email = action.payload.email;
-      state.password = action.payload.password;
-      state.emailValid = !!state.email.match(
-        /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
-      );
-      state.passwordValid = state.password.length >= 6;
-      state.formValid = state.emailValid && state.passwordValid;
-      state.isLoggedIn = state.formValid;
+      state.emailValid = !!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      state.passwordValid = password.length >= 5 && !/\s/.test(password);
+      state.isLoggedIn = state.emailValid && state.passwordValid;
 
       if (state.isLoggedIn) {
-        if (
-          state.email === "aleks@mytodoapp.com" &&
-          state.password === "password"
-        ) {
-          state.username = "aleks";
+        if (email === "aleks@mytodoapp.com" && password === "password") {
+          state.username = "Aleks";
         } else {
-          state.username = "guest";
+          state.username = "Guest";
         }
       }
+    },
+    clearLoginDetails() {
+      return initialState;
     },
   },
 });
 
 export const { reducer: loginFormReducer } = loginFormSlice;
 
-export const { validateLoginDetails } = loginFormSlice.actions;
+export const { validateLoginDetails, clearLoginDetails } =
+  loginFormSlice.actions;

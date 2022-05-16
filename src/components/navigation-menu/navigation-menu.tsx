@@ -4,10 +4,34 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Button, useTheme } from "@mui/material";
 
+import { clearLoginDetails } from "../../store/slices/login-form-slice";
+import { useTypedSelector, useTypedDispatch } from "../../store/utils";
 import { NavigationMenuMobile } from "./navigation-menu-mobile";
 
 export const NavigationMenu = () => {
   const theme = useTheme();
+  const dispatch = useTypedDispatch();
+  const isLoggedIn = useTypedSelector(
+    (state) => state.loginFormReducer.isLoggedIn
+  );
+
+  let loginButtonLabel: string;
+  let loginButtonPath: string;
+
+  if (isLoggedIn) {
+    loginButtonLabel = "Logout";
+    loginButtonPath = "/";
+  } else {
+    loginButtonLabel = "Login";
+    loginButtonPath = "login";
+  }
+
+  const loginButtonClickHandler = () => {
+    if (isLoggedIn) {
+      return dispatch(clearLoginDetails());
+    }
+    return null;
+  };
 
   return (
     <>
@@ -25,7 +49,7 @@ export const NavigationMenu = () => {
             Information
           </NavigationButton>
         </NavigationLink>
-        <NavigationLink to="login" tabIndex={-1}>
+        <NavigationLink to={loginButtonPath} tabIndex={-1}>
           <NavigationButton
             variant="contained"
             disableElevation
@@ -34,12 +58,17 @@ export const NavigationMenu = () => {
                 backgroundColor: theme.palette.info.main,
               },
             }}
+            onClick={loginButtonClickHandler}
           >
-            Login
+            {loginButtonLabel}
           </NavigationButton>
         </NavigationLink>
       </Nav>
-      <NavigationMenuMobile />
+      <NavigationMenuMobile
+        loginButtonLabel={loginButtonLabel}
+        loginButtonPath={loginButtonPath}
+        onClickFn={loginButtonClickHandler}
+      />
     </>
   );
 };

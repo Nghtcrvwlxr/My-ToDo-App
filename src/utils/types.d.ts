@@ -9,12 +9,9 @@ export interface TodoListState {
 
 export interface LoginFormState {
   isLoggedIn: boolean;
-  email: string;
-  password: string;
   username: string;
   emailValid: boolean;
   passwordValid: boolean;
-  formValid: boolean;
 }
 
 export interface StatusButtonTemplate {
@@ -23,13 +20,6 @@ export interface StatusButtonTemplate {
 }
 
 export interface TodoListElementTemplate {
-  id: number;
-  label: string;
-  important: boolean;
-  done: boolean;
-}
-
-export interface TodoListElementProps {
   id: number;
   label: string;
   important: boolean;

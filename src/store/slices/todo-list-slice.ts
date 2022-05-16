@@ -28,7 +28,7 @@ const todoListSlice = createSlice({
         } else {
           newId = state.data[state.data.length - 1].id + 1;
         }
-        const newItem = {
+        const newItem: TodoListElementTemplate = {
           id: newId,
           label: action.payload,
           important: false,
@@ -42,9 +42,7 @@ const todoListSlice = createSlice({
         `Are you sure you want to delete this item?`
       );
       if (confirmation) {
-        state.data = state.data.filter((item) => {
-          return item.id !== action.payload;
-        });
+        state.data = state.data.filter((item) => item.id !== action.payload);
       }
     },
     toggleProperty(
@@ -66,11 +64,7 @@ const todoListSlice = createSlice({
       state.search = action.payload;
     },
     toggleThemeMode(state) {
-      if (state.mode === "light") {
-        state.mode = "dark";
-      } else {
-        state.mode = "light";
-      }
+      state.mode = state.mode === "light" ? "dark" : "light";
     },
   },
 });
