@@ -17,7 +17,7 @@ const loginFormSlice = createSlice({
       state,
       {
         payload: { email, password },
-      }: PayloadAction<{ email: string; password: string }>
+      }: PayloadAction<{ email: string; password: string }>,
     ) {
       state.emailValid = !!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
       state.passwordValid = password.length >= 5 && !/\s/.test(password);

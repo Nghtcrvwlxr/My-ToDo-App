@@ -4,9 +4,11 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": false,
-  "trailingComma": "es5",
+  "trailingComma": "all",
   "bracketSpacing": true,
-  "eslintIntegration": true,
+  "arrowParens": "avoid",
+  "jsxSingleQuote": false,
+  "endOfLine": "auto",
   "importOrder": [
     "^react",
     "<THIRD_PARTY_MODULES>",

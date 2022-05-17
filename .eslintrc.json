@@ -5,41 +5,20 @@
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
     "airbnb",
     "airbnb-typescript",
-    "plugin:prettier/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": "latest",
-    "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint", "import", "@emotion", "prettier"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     "import/prefer-default-export": "off",
-    "sort-imports": "off",
-    "import/order": "off",
     "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-esling/ban-types": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-shadow": "off",
-    "@emotion/pkg-renaming": "error",
+    "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": [
       2,
       {
@@ -47,16 +26,27 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/jsx-props-no-spreading": "off",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
         "required": {
-          "some": ["nesting", "id"]
+          "some": [
+            "nesting",
+            "id"
+          ]
         }
       }
-    ],
-    "no-param-reassign": "off",
-    "linebreak-style": "off"
-  }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/slice.ts",
+        "**/slices/**/*.ts"
+      ],
+      "rules": {
+        "no-param-reassign": "off"
+      }
+    }
+  ]
 }

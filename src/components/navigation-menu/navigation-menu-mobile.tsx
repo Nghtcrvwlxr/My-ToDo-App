@@ -19,7 +19,7 @@ export const NavigationMenuMobile: FC<NavigationMenuMobileProps> = ({
   onClickFn,
 }) => {
   const isLoggedIn = useTypedSelector(
-    (state) => state.loginFormReducer.isLoggedIn
+    state => state.loginFormReducer.isLoggedIn,
   );
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

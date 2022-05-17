@@ -11,7 +11,7 @@ export const SearchPanel: FC = () => {
   const dispatch = useTypedDispatch();
   const [term, setTerm] = useState("");
 
-  const onInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const onInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     setTerm(event.target.value);
     dispatch(updateSearch(event.target.value));
   };

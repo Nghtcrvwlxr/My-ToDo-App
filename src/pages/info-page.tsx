@@ -7,7 +7,7 @@ import { useTypedSelector } from "../store/utils";
 
 export const InfoPage: FC = () => {
   const isLoggedIn = useTypedSelector(
-    (state) => state.loginFormReducer.isLoggedIn
+    state => state.loginFormReducer.isLoggedIn,
   );
 
   if (!isLoggedIn) {

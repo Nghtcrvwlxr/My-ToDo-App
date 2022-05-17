@@ -39,18 +39,18 @@ const todoListSlice = createSlice({
     },
     deleteItem(state, action: PayloadAction<number>) {
       const confirmation: boolean = window.confirm(
-        `Are you sure you want to delete this item?`
+        `Are you sure you want to delete this item?`,
       );
       if (confirmation) {
-        state.data = state.data.filter((item) => item.id !== action.payload);
+        state.data = state.data.filter(item => item.id !== action.payload);
       }
     },
     toggleProperty(
       state,
-      action: PayloadAction<{ id: number; property: string }>
+      action: PayloadAction<{ id: number; property: string }>,
     ) {
       const index = state.data.findIndex(
-        (element) => element.id === action.payload.id
+        element => element.id === action.payload.id,
       );
       if (action.payload.property === "important")
         state.data[index].important = !state.data[index].important;

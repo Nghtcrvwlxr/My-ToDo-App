@@ -18,13 +18,13 @@ import { TodoListElementTemplate } from "../utils/types";
 
 export const App: FC = () => {
   const dispatch = useTypedDispatch();
-  const todoData = useTypedSelector((state) => state.todoListReducer.data);
-  const mode = useTypedSelector((state) => state.todoListReducer.mode);
+  const todoData = useTypedSelector(state => state.todoListReducer.data);
+  const mode = useTypedSelector(state => state.todoListReducer.mode);
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   useEffect(() => {
     const savedData = JSON.parse(
-      localStorage.getItem("savedData") || "[]"
+      localStorage.getItem("savedData") || "[]",
     ) as TodoListElementTemplate[];
     dispatch(loadData(savedData));
   }, [dispatch]);

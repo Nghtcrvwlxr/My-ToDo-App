@@ -7,10 +7,8 @@ import { useTypedSelector } from "../../store/utils";
 
 export const AppFooter: FC = () => {
   const theme = useTheme();
-  const isLogged = useTypedSelector(
-    (state) => state.loginFormReducer.isLoggedIn
-  );
-  const username = useTypedSelector((state) => state.loginFormReducer.username);
+  const isLogged = useTypedSelector(state => state.loginFormReducer.isLoggedIn);
+  const username = useTypedSelector(state => state.loginFormReducer.username);
 
   const userDetails = () => {
     if (isLogged) {

@@ -10,10 +10,10 @@ import { NavigationMenu } from "../navigation-menu/navigation-menu";
 import { ThemeModeSwitch } from "../theme-mode-switch/theme-mode-switch";
 
 export const AppHeader: FC = () => {
-  const todoData = useTypedSelector((state) => state.todoListReducer.data);
+  const todoData = useTypedSelector(state => state.todoListReducer.data);
 
-  const doneCount = todoData.filter((element) => element.done).length;
-  const todoCount = todoData.filter((element) => !element.done).length;
+  const doneCount = todoData.filter(element => element.done).length;
+  const todoCount = todoData.filter(element => !element.done).length;
 
   return (
     <AppBar position="fixed">

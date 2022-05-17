@@ -12,7 +12,7 @@ export const NavigationMenu = () => {
   const theme = useTheme();
   const dispatch = useTypedDispatch();
   const isLoggedIn = useTypedSelector(
-    (state) => state.loginFormReducer.isLoggedIn
+    state => state.loginFormReducer.isLoggedIn,
   );
 
   let loginButtonLabel: string;

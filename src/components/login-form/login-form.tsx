@@ -11,7 +11,7 @@ import { useTypedDispatch, useTypedSelector } from "../../store/utils";
 export const LoginForm: FC = () => {
   const theme = useTheme();
   const dispatch = useTypedDispatch();
-  const loginData = useTypedSelector((state) => state.loginFormReducer);
+  const loginData = useTypedSelector(state => state.loginFormReducer);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -45,18 +45,18 @@ export const LoginForm: FC = () => {
     return () => clearTimeout(timeout);
   }, [loginData.isLoggedIn, navigate]);
 
-  const onEmailInputChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const onEmailInputChange: React.ChangeEventHandler<
+    HTMLInputElement
+  > = event => {
     setEmail(event.target.value);
   };
-  const onPasswordInputChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const onPasswordInputChange: React.ChangeEventHandler<
+    HTMLInputElement
+  > = event => {
     setPassword(event.target.value);
   };
 
-  const onFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const onFormSubmit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
     dispatch(validateLoginDetails({ email, password }));
   };

@@ -10,23 +10,22 @@ import { useTypedSelector, useTypedDispatch } from "../../store/utils";
 
 export const ThemeModeSwitch = () => {
   const dispatch = useTypedDispatch();
-  const themeMode = useTypedSelector((state) => state.todoListReducer.mode);
+  const themeMode = useTypedSelector(state => state.todoListReducer.mode);
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
         dispatch(toggleThemeMode());
       },
     }),
-    [dispatch]
+    [dispatch],
   );
 
-  const iconElement = (mode: PaletteMode) => {
-    return mode === "light" ? (
+  const iconElement = (mode: PaletteMode) =>
+    mode === "light" ? (
       <LightModeIcon fontSize="inherit" />
     ) : (
       <DarkModeIcon fontSize="inherit" />
     );
-  };
 
   return (
     <ModeSwitchButton

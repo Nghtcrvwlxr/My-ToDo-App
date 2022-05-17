@@ -10,7 +10,7 @@ import { StatusButtonTemplate } from "../../utils/types";
 export const ItemStatusFilter: FC = () => {
   const theme = useTheme();
   const dispatch = useTypedDispatch();
-  const filter = useTypedSelector((state) => state.todoListReducer.filter);
+  const filter = useTypedSelector(state => state.todoListReducer.filter);
 
   const buttons: StatusButtonTemplate[] = [
     { label: "All", key: "all" },
@@ -18,20 +18,18 @@ export const ItemStatusFilter: FC = () => {
     { label: "Done", key: "done" },
   ];
 
-  const elements: JSX.Element[] = buttons.map(({ key, label }) => {
-    return (
-      <FilterButton
-        key={key}
-        term={key}
-        filter={filter}
-        hovercolor={theme.palette.info.dark}
-        activecolor={theme.palette.info.main}
-        onClick={() => dispatch(toggleFilter(key))}
-      >
-        {label}
-      </FilterButton>
-    );
-  });
+  const elements: JSX.Element[] = buttons.map(({ key, label }) => (
+    <FilterButton
+      key={key}
+      term={key}
+      filter={filter}
+      hovercolor={theme.palette.info.dark}
+      activecolor={theme.palette.info.main}
+      onClick={() => dispatch(toggleFilter(key))}
+    >
+      {label}
+    </FilterButton>
+  ));
 
   return (
     <Container>
