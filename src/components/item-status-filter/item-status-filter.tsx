@@ -5,7 +5,11 @@ import { ButtonGroup, Button, ButtonBaseProps, useTheme } from "@mui/material";
 
 import { toggleFilter } from "../../store/slices/todo-list-slice";
 import { useTypedDispatch, useTypedSelector } from "../../store/utils";
-import { StatusButtonTemplate } from "../../utils/types";
+
+interface StatusButtonTemplate {
+  label: string;
+  key: string;
+}
 
 export const ItemStatusFilter: FC = () => {
   const theme = useTheme();
@@ -23,8 +27,8 @@ export const ItemStatusFilter: FC = () => {
       key={key}
       term={key}
       filter={filter}
-      hovercolor={theme.palette.info.dark}
-      activecolor={theme.palette.info.main}
+      hoverColor={theme.palette.info.dark}
+      activeColor={theme.palette.info.main}
       onClick={() => dispatch(toggleFilter(key))}
     >
       {label}
@@ -52,22 +56,29 @@ const Container = styled.div`
 interface FilterButtonProps extends ButtonBaseProps {
   filter: string;
   term: string;
-  hovercolor: string;
-  activecolor: string;
+  hoverColor: string;
+  activeColor: string;
 }
 
-const FilterButton = styled(Button)<FilterButtonProps>`
+const FilterButton = styled(Button, {
+  shouldForwardProp: prop => {
+    if (typeof prop === "string") {
+      return !["hoverColor", "activeColor"].includes(prop);
+    }
+    return true;
+  },
+})<FilterButtonProps>`
   transition: 0.5s all;
   outline: 1px solid dimgray;
-  ${({ filter, term, activecolor }) =>
+  ${({ filter, term, activeColor }) =>
     filter === term &&
     `
-    background-color: ${activecolor};
+    background-color: ${activeColor};
     transform: scale(1.1);
     z-index: 5;
   `};
   &:hover {
-    background-color: ${({ hovercolor }) => hovercolor};
+    background-color: ${({ hoverColor }) => hoverColor};
   }
   @media (max-width: 600px) {
     font-size: 12px;

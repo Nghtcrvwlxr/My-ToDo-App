@@ -5,7 +5,10 @@ import styled from "@emotion/styled";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Box, TextField, Button, useTheme } from "@mui/material";
 
-import { validateLoginDetails } from "../../store/slices/login-form-slice";
+import {
+  validateLoginDetails,
+  clearError,
+} from "../../store/slices/login-form-slice";
 import { useTypedDispatch, useTypedSelector } from "../../store/utils";
 
 export const LoginForm: FC = () => {
@@ -56,6 +59,10 @@ export const LoginForm: FC = () => {
     setPassword(event.target.value);
   };
 
+  const focusHandler: React.FocusEventHandler<HTMLInputElement> = event => {
+    dispatch(clearError(event.target.type));
+  };
+
   const onFormSubmit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
     dispatch(validateLoginDetails({ email, password }));
@@ -80,6 +87,7 @@ export const LoginForm: FC = () => {
             fullWidth
             value={email}
             onChange={onEmailInputChange}
+            onFocusCapture={focusHandler}
           />
           <LoginFormInput
             id="password-input"
@@ -92,6 +100,7 @@ export const LoginForm: FC = () => {
             fullWidth
             value={password}
             onChange={onPasswordInputChange}
+            onFocusCapture={focusHandler}
           />
           <Button
             type="submit"

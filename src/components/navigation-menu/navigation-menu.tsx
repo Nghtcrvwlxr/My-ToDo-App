@@ -15,22 +15,13 @@ export const NavigationMenu = () => {
     state => state.loginFormReducer.isLoggedIn,
   );
 
-  let loginButtonLabel: string;
-  let loginButtonPath: string;
-
-  if (isLoggedIn) {
-    loginButtonLabel = "Logout";
-    loginButtonPath = "/";
-  } else {
-    loginButtonLabel = "Login";
-    loginButtonPath = "login";
-  }
+  const loginButtonLabel = isLoggedIn ? "Logout" : "Login";
+  const loginButtonPath = isLoggedIn ? "/" : "login";
 
   const loginButtonClickHandler = () => {
     if (isLoggedIn) {
-      return dispatch(clearLoginDetails());
+      dispatch(clearLoginDetails());
     }
-    return null;
   };
 
   return (
@@ -99,4 +90,7 @@ const NavigationButton = styled(Button)`
     rgba(255, 255, 255, 0.15),
     rgba(255, 255, 255, 0.15)
   );
+  @media (max-width: 1024px) {
+    padding: 0 0.5rem;
+  }
 `;

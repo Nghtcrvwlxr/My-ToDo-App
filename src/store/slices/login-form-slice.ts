@@ -1,6 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { LoginFormState } from "../../utils/types";
+interface LoginFormState {
+  isLoggedIn: boolean;
+  username: string;
+  emailValid: boolean;
+  passwordValid: boolean;
+}
+
+type LoginDetails = {
+  email: string;
+  password: string;
+};
 
 const initialState: LoginFormState = {
   isLoggedIn: false,
@@ -15,11 +25,9 @@ const loginFormSlice = createSlice({
   reducers: {
     validateLoginDetails(
       state,
-      {
-        payload: { email, password },
-      }: PayloadAction<{ email: string; password: string }>,
+      { payload: { email, password } }: PayloadAction<LoginDetails>,
     ) {
-      state.emailValid = !!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      state.emailValid = /^([\w.%+-]+)@([\w-]+\.)+(\w{2,})$/i.test(email);
       state.passwordValid = password.length >= 5 && !/\s/.test(password);
       state.isLoggedIn = state.emailValid && state.passwordValid;
 
@@ -31,6 +39,13 @@ const loginFormSlice = createSlice({
         }
       }
     },
+    clearError(state, action: PayloadAction<string>) {
+      if (action.payload === "email" && !state.emailValid) {
+        state.emailValid = true;
+      } else if (action.payload === "password" && !state.passwordValid) {
+        state.passwordValid = true;
+      }
+    },
     clearLoginDetails() {
       return initialState;
     },
@@ -39,5 +54,5 @@ const loginFormSlice = createSlice({
 
 export const { reducer: loginFormReducer } = loginFormSlice;
 
-export const { validateLoginDetails, clearLoginDetails } =
+export const { validateLoginDetails, clearError, clearLoginDetails } =
   loginFormSlice.actions;

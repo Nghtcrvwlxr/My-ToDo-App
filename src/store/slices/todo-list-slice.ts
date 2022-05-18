@@ -1,6 +1,14 @@
+import { PaletteMode } from "@mui/material";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { TodoListElementTemplate, TodoListState } from "../../utils/types";
+import { TodoListElementTemplate } from "../../utils/types";
+
+interface TodoListState {
+  mode: PaletteMode;
+  filter: string;
+  search: string;
+  data: TodoListElementTemplate[];
+}
 
 const initialState: TodoListState = {
   mode: "light",

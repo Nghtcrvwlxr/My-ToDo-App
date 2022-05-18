@@ -45,6 +45,9 @@ const Logo = styled.div`
 const HeaderIcon = styled(FormatListBulletedIcon)`
   font-size: 35px;
   margin: 0.5rem;
+  @media (max-width: 1024px) {
+    margin: 0.1rem;
+  }
   @media (max-width: 768px) {
     font-size: 25px;
     margin: 0;
@@ -60,7 +63,7 @@ const Title = styled.h1`
     font-size: 22px;
   }
   @media (max-width: 425px) {
-    font-size: 18px;
+    font-size: 16px;
   }
   @media (max-width: 375px) {
     font-size: 14px;
@@ -72,7 +75,7 @@ const HeaderLink = styled(Link)`
   color: inherit;
   margin: 0 1rem;
   @media (max-width: 600px) {
-    margin: 0 0.5rem;
+    margin: 0 0.25rem;
   }
 `;
 
@@ -84,10 +87,10 @@ const Counter = styled.span`
     font-size: 14px;
   }
   @media (max-width: 600px) {
+    margin: 0 0.25rem;
     font-size: 12px;
   }
   @media (max-width: 375px) {
-    margin: 0 0.25rem;
     font-size: 10px;
   }
 `;
