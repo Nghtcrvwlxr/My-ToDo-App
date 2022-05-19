@@ -4,8 +4,8 @@
 
 (Work in progress);
 
-**Desktop version;**
+**Desktop and Mobile version;**
 
-Components design and styling are in test form;
+Components design and styling made with Material-UI and styled-components(Emotion);
 
-Tech stack: TypeScript, React, React-Router, Redux, Redux-Toolkit, styled-components;
+Tech stack: TypeScript, React, React-Router, Redux, Redux-Toolkit;
